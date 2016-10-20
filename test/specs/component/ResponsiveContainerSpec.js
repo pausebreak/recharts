@@ -47,8 +47,19 @@ describe('<ResponsiveContainer />', () => {
       </ResponsiveContainer>
     );
 
-    expect(wrapper.find('.inside')).to.have.attr('width').equal('300');
-    expect(wrapper.find('.inside')).to.have.attr('height').equal('150');
+    expect(wrapper.find('.inside')).to.have.attr('width').equal('0');
+    expect(wrapper.find('.inside')).to.have.attr('height').equal('0');
+  });
+
+  it("Handles inverse aspects", () => {
+    const wrapper = mount(
+      <ResponsiveContainer height={300} aspect={0.5} width={300}>
+        <div className="inside">Inside</div>
+      </ResponsiveContainer>
+    );
+
+    expect(wrapper.find('.inside')).to.have.attr('width').equal('150');
+    expect(wrapper.find('.inside')).to.have.attr('height').equal('300');
   });
 
   it("Handles zero width correctly", () => {
@@ -72,8 +83,8 @@ describe('<ResponsiveContainer />', () => {
       </ResponsiveContainer>
     );
 
-    expect(wrapper.find('.inside')).to.have.attr('height').equal('150');
-    expect(wrapper.find('.inside')).to.have.attr('width').equal('300');
+    expect(wrapper.find('.inside')).to.have.attr('height').equal('100');
+    expect(wrapper.find('.inside')).to.have.attr('width').equal('200');
   });
 
   it("Preserves aspect ratio when undersized", () => {
